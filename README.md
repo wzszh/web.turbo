@@ -4,5 +4,6 @@
 
 3.cd 到包含"web.lua"和"index.html"文件的目录下并运行"luajit web.lua"
 
-4.浏览器输入"localhost:8888/stats"查看前端页面
+4.浏览器输入"localhost:8888"查看前端页面
+
 
