@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Turbo Stats</title>
+    <style>
+        / CSS 样式 /
+        body {
+            font-family: Arial, sans-serif;
+            margin: 50px;
+        }
+        h1 {
+            text-align: center;
+        }
+        .stats-container {
+            display: flex;
+            justify-content: space-around;
+        }
+        .stat {
+            text-align: center;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            width: 150px;
+            background-color: #f0f0f0;
+        }
+    </style>
+</head>
+<body>
+    <h1>Turbo Stats</h1>
+    <div class="stats-container">
+        <div class="stat">
+            <h2>Requests</h2>
+            <p id="requests">-</p>
+        </div>
+        <div class="stat">
+            <h2>Errors</h2>
+            <p id="errors">-</p>
+        </div>
+        <div class="stat">
+            <h2>Success Rate</h2>
+            <p id="successRate">-</p>
+        </div>
+    </div>
+
+    <script>
+        // JavaScript 代码
+        // 发起 GET 请求获取 Turbo Stats 数据
+        function fetchStats() {
+            fetch('/stats')
+            .then(response => response.json())
+            .then(data => {
+                // 更新页面上的数据
+                document.getElementById('requests').textContent = data.requests;
+                document.getElementById('errors').textContent = data.errors;
+                document.getElementById('successRate').textContent = data.success_rate + '%';
+            })
+            .catch(error => console.error('Error:', error));
+        }
+
+        // 每秒钟获取一次 Turbo Stats 数据
+        setInterval(fetchStats, 1000);
+    </script>
+</body>
+</html>
+
